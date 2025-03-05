@@ -52,9 +52,9 @@ public class UserInteractions
         
     }
 
-    public void CurrentBalance(BankAccount _bankAccount)
+    public void CurrentBalance(BankAccount bankAccount)
     {
-        Console.WriteLine($"Your current balance is {_bankAccount.GetBalance():C}");
+        Console.WriteLine($"Your current balance is {bankAccount.GetBalance():C}");
     }
 
     public void ThankYouMessage()

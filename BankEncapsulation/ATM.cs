@@ -4,46 +4,46 @@ public class ATM
 {
     public void StartTransaction()
     {
-        BankAccount _bankAccount = new BankAccount();
-        InteractiveMenu _interactiveMenu = new InteractiveMenu();
-        UserInteractions _userInteractions = new UserInteractions();
+        BankAccount bankAccount = new BankAccount();
+        InteractiveMenu interactiveMenu = new InteractiveMenu();
+        UserInteractions userInteractions = new UserInteractions();
         var endSession = false;
 
-        _bankAccount.Owner = _userInteractions.GetName(_bankAccount); // make this method
-        _userInteractions.WelcomeMessage(_bankAccount.Owner);
+        bankAccount.Owner = userInteractions.GetName(bankAccount); // make this method
+        userInteractions.WelcomeMessage(bankAccount.Owner);
 
         do
         {
-            _userInteractions.MakeAChoice();
+            userInteractions.MakeAChoice();
 
 
-            int choice = _interactiveMenu.GetChoice();
+            int choice = interactiveMenu.GetChoice();
             switch (choice)
             {
                 case 1:
-                    double deposit = _userInteractions.GetAmount("deposit");
-                    _bankAccount.Deposit(deposit);
-                    _userInteractions.ClosedLoopCommunication("deposit", deposit);
+                    double deposit = userInteractions.GetAmount("deposit");
+                    bankAccount.Deposit(deposit);
+                    userInteractions.ClosedLoopCommunication("deposit", deposit);
                     break;
                 case 2:
-                    double withdrawAmount = _userInteractions.GetAmount("withdraw");
-                    if (!_bankAccount.Withdraw(withdrawAmount))
-                        _userInteractions.InsufficientFunds();
+                    double withdrawAmount = userInteractions.GetAmount("withdraw");
+                    if (!bankAccount.Withdraw(withdrawAmount))
+                        userInteractions.InsufficientFunds();
                     else
-                        _userInteractions.ClosedLoopCommunication("withdrawn", withdrawAmount);
+                        userInteractions.ClosedLoopCommunication("withdrawn", withdrawAmount);
 
                     break;
                 case 3:
-                    _userInteractions.CurrentBalance(_bankAccount);
+                    userInteractions.CurrentBalance(bankAccount);
                     break;
                 case 4:
-                    _userInteractions.ThankYouMessage();
+                    userInteractions.ThankYouMessage();
                     endSession = true;
                     break;
             }
 
             if (choice != 4)
-                _userInteractions.Pause();
+                userInteractions.Pause();
         } while (endSession == false);
     }
 
